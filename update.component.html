@@ -1,0 +1,8 @@
+<form [formGroup]="updatedForm" (ngSubmit)="update()">
+    <div class="form-group" (ngsubmit)="update">
+        <label for="exampleInputEmail1">Name</label>
+      </div>
+      <input type="text" class="form-control" formControlName="name" name="name" placeholder="First Name"  [value]="showData.name">
+
+      <button type="submit">Update</button>
+</form>

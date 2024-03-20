@@ -1,0 +1,100 @@
+
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+  Launch demo modal
+</button>
+
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+
+        <form [formGroup]="templetform" novalidate>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Name</label>
+            <input type="text" class="form-control" formControlName="name" name="name" placeholder="Enter Name"
+              required>
+            <small id="emailHelp" class="form-text text-muted">We'll never share your name with anyone else.</small>
+            <div
+              *ngIf="templetform.get('name')?.invalid && (templetform.get('name')?.dirty ||templetform.get('name')?.touched)">
+              <div *ngIf="templetform.get('name')?.errors?.['required']" class="text-danger">
+                <span>required</span>
+
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email</label>
+            <input type="text" class="form-control" formControlName="email" name="email" placeholder="Enter Email"
+              required>
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Age</label>
+            <input type="number" class="form-control" formControlName="age" name="age" placeholder="Enter Your Age"
+              required>
+
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Number</label>
+            <input type="number" class="form-control" formControlName="number" name="number" placeholder="Enter Mobile Number"
+              required>
+            <small id="emailHelp" class="form-text text-muted">We'll never share your Number with anyone else.</small>
+
+          </div>
+          <div class="form-group">
+            <label for="">Countory</label>
+           <select  formControlName name="countory"  clas="form-control" >
+            <option *ngFor="let nam of countriesName" value="nam">{{nam}}</option>
+           </select>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+          </div>
+        </form>
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="add(this.templetform.value)"
+          [disabled]="templetform.invalid">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+  <table>
+    <tr>
+      <th>Name</th>
+    </tr >
+    <tr *ngFor="let tem of showData">
+    <td>{{tem.name}}</td>
+    <td><button type="submit" (click)="deleteItem(tem.id)">Delete</button></td>
+    <td><button type="submit" routerLink="/update/{{tem.id}}">Edit</button></td>
+  </tr>
+  </table>
+
+<!-- 
+  <table>
+    <tr *ngFor="let tem of showData|paginate:{ itemsPerPage: pageSize, currentPage: currentpage }; let i = index">
+
+      <td>{{ i + 1+(pageSize*(currentpage-1)) }}</td>
+
+      <td> {{tem.name}}</td>
+
+      <td><button type="submit" (click)="deleteItem(tem.id)">Delete</button></td>
+      <td><button type="submit" routerLink="/update/{{tem.id}}">update</button></td>
+    </tr>
+  </table>
+  <pagination-controls (pageChange)="currentpage = $event"></pagination-controls>
+
+</div> -->

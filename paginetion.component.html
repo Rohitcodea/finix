@@ -1,0 +1,13 @@
+<table class="table">
+    <tr>
+      <th>Name</th>
+      <th>Mobile</th>
+    </tr>
+    <tr *ngFor="let item of data | paginate:{ itemsPerPage: pageSize, currentPage: currentpage }; let i = index">
+      <td>{{ i + 1+(pageSize*(currentpage-1)) }}</td>
+      <td>{{ item.name }}</td>
+      <td>{{ item.mobile }}</td>
+    </tr>
+  </table>
+  <pagination-controls (pageChange)="currentpage = $event"></pagination-controls>
+  
